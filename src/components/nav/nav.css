@@ -1,0 +1,40 @@
+.customNav {
+  width: 100%;
+  height: 10rem;
+  position: sticky;
+  left: 0;
+  top: 0;
+  padding: 2rem 1rem;
+  background-color: white;
+}
+.customNav .logo {
+  cursor: pointer;
+  color: var(--mainColor);
+  /* overflow: hidden; */
+  width: 10rem;
+}
+.customNav .logo img {
+  width: 10rem;
+}
+.customNav__left ul {
+  list-style: none;
+  margin: 0;
+}
+.customNav__left ul li {
+  display: inline-block;
+  margin-right: 3rem;
+  transition: color 0.3s ease;
+}
+.customNav__link {
+  text-decoration: none;
+  color: var(--mainColor);
+  font-size: 2.5rem;
+  font-family: "El Messiri";
+  transition: color 0.3s ease;
+}
+.customNav__link:hover {
+  color: var(--mainColor-light);
+}
+.customNav__left ul li:hover {
+  color: var(--mainColor-light);
+}

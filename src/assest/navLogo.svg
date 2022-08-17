@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="393" height="475" viewBox="0 0 393 475">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #173753;
+        font-size: 216px;
+        font-family: Monadi, Monadi Reguler;
+      }
+
+      .cls-2 {
+        font-size: 150px;
+      }
+    </style>
+  </defs>
+  <text id="معاك" class="cls-1" transform="translate(0 259)"><tspan x="0" y="0">اك</tspan><tspan class="cls-2" y="0">مع</tspan></text>
+</svg>

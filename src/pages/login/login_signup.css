@@ -1,0 +1,34 @@
+.login {
+  padding: 5rem 0;
+  font-family: "El Messiri";
+}
+.login__right {
+  color: var(--mainColor);
+}
+.login__right h3 {
+  font-size: 3.5rem;
+  margin-bottom: 5rem;
+}
+.login__form label {
+  display: block;
+  font-size: 1.6rem;
+  margin-bottom: 0.8rem;
+}
+.login__form input {
+  padding: 0.6rem 2rem;
+  font-size: 1.6rem;
+  width: 30rem;
+  outline: none;
+  transition: all 0.3s ease;
+  direction: ltr;
+  border: 0.1rem solid var(--mainColor);
+}
+.login__form input:focus {
+  background-color: var(--mainColor);
+  color: var(--whiteColor);
+  border: 0.1rem solid transparent;
+}
+.login__createAcc {
+  margin-top: 2rem;
+  font-size: 1.6rem;
+}
