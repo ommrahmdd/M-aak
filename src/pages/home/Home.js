@@ -6,7 +6,7 @@ export default function Home() {
       <div className="container-fluid">
         <h1>الرئيسية</h1>
         <div className="row whoAmI px-4 my-4">
-          <div className="col-md-6 whoAmI__right">
+          <div className="col-md-6 order-md-0 order-1 whoAmI__right">
             <h3>احنا مين ؟</h3>
             <div>
               <p>
@@ -25,7 +25,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="col-md-6 whoAmI__left">
+          <div className="col-md-6 order-md-1 order-0 whoAmI__left">
             <img
               src={require("./../../assest/home_whoAmI.png")}
               className="w-100"

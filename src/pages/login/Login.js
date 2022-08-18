@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 import { useHistory } from "react-router-dom";
 import { login } from "../../firebase/users";
+import toast, { Toaster } from "react-hot-toast";
 import "./login_signup.css";
 export default function Login() {
   let validate = (values) => {
@@ -21,13 +22,34 @@ export default function Login() {
     },
     validate,
     onSubmit: (values) => {
-      console.log(values);
-      login(values.email, values.password).then((data) => {
-        console.log(data);
-        if (data == "auth/user-not-found")
-          setError("عفوا البريد الالكتروني غير صحيح");
-        if ((data = "auth/wrong-password")) setError("كلمة المرور غير صحيحة");
-      });
+      toast.promise(
+        login(values.email, values.password),
+        {
+          loading: "من فضلك انتظر ",
+          success: (data) => {
+            if (data == "auth/user-not-found")
+              return "عفوا البريد الالكتروني غير صحيح";
+            else if (data == "auth/wrong-password")
+              return "كلمة المرور غير صحيحة";
+            else {
+              console.log("Logged");
+              history.push("/");
+              window.location.reload();
+              return "تم تسجيل الدخول بنجاح";
+            }
+          },
+        },
+        {
+          style: {
+            minWidth: "25rem",
+            fontSize: "2rem",
+          },
+          success: {
+            duration: 3000,
+            icon: "🥑",
+          },
+        }
+      );
     },
   });
   let history = useHistory();
@@ -38,7 +60,7 @@ export default function Login() {
   return (
     <div className="login" dir="rtl">
       <div className="row ">
-        <div className="col-md-6 d-flex flex-column justify-content-center align-items-center  login__right">
+        <div className="col-md-6 order-md-0 order-1  d-flex flex-column justify-content-center align-items-center  login__right">
           <h3>تسجيل الدخول</h3>
           <form
             className="login__form"
@@ -78,6 +100,7 @@ export default function Login() {
             >
               تسجيل الدخول
             </button>
+            <Toaster />
             <small className="d-block mt-2 fs-5 text-danger">
               {error && error}
             </small>
@@ -89,8 +112,12 @@ export default function Login() {
             </a>
           </p>
         </div>
-        <div className="col-md-6 login__left">
-          <img src={require("./../../assest/login.png")} className="w-100" />
+
+        <div className="col-md-6 order-md-1 order-0  login__left">
+          <img
+            src={require("./../../assest/login.png")}
+            className="w-100 mb-md-0 mb-5"
+          />
         </div>
       </div>
     </div>

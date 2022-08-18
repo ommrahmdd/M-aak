@@ -38,7 +38,7 @@ export default function Signup() {
   return (
     <div className="login" dir="rtl">
       <div className="row ">
-        <div className="col-md-6 d-flex flex-column justify-content-center align-items-center  login__right">
+        <div className="col-md-6 order-md-0 order-1 d-flex flex-column justify-content-center align-items-center  login__right">
           <h3>إنشاء حساب جديد</h3>
           <form
             className="login__form"
@@ -134,7 +134,7 @@ export default function Signup() {
             </small>
           </form>
         </div>
-        <div className="col-md-6 login__left d-flex align-items-center">
+        <div className="col-md-6 order-md-1 mb-md-0 mb-5 order-0 login__left d-flex align-items-center">
           <img src={require("./../../assest/signup.png")} className="w-100" />
         </div>
       </div>

@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Nav from "./components/nav/Nav";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Cases from "./pages/cases/Cases";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
@@ -9,8 +11,9 @@ function App() {
       <Router>
         <Nav />
         <Switch>
-          <Route path="/signup" exact component={Signup} />
-          <Route path="/login" exact component={Login} />
+          <Route path="/cases" exact component={Cases} />
+          <ProtectedRoute path="/signup" exact component={Signup} />
+          <ProtectedRoute path="/login" exact component={Login} />
           <Route path="/" exact component={Home} />
         </Switch>
       </Router>

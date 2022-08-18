@@ -1,0 +1,40 @@
+.cases {
+  padding: 4rem 0;
+}
+.cases h3 {
+  font-size: 4rem;
+  margin-bottom: 3rem;
+  margin-right: 3rem;
+  color: var(--mainColor);
+}
+.case__box {
+  background-color: var(--mainColor-light);
+  padding: 2rem;
+  border-radius: 1rem;
+  color: var(--mainColor);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.case__box:hover {
+  opacity: 0.8;
+}
+.case__box h4 {
+  font-size: 3rem;
+}
+.case__box h5 {
+  color: var(--whiteColor);
+  font-style: italic;
+}
+.case__box p {
+  font-size: 1.8rem;
+  margin: 1rem 0;
+}
+.case__box-debt p {
+  /* color: var(--whiteColor); */
+  font-size: 1.6rem;
+}
+.case__box-debt span {
+  font-weight: bolder;
+  /* color: var(--mainColor); */
+  font-size: 1.9rem;
+}

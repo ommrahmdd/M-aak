@@ -19,7 +19,7 @@ code {
   --whiteColor: #fffdf7;
 }
 body {
-  font-family: "Tajawal";
+  font-family: "El Messiri" !important;
   overflow-x: hidden;
 }
 html {

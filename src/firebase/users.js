@@ -3,11 +3,21 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  where,
+  getDoc,
+  doc,
+  getDocs,
+  query,
+} from "firebase/firestore";
 import { db, auth } from "./config";
 
 let usersRef = collection(db, "users");
+// HANDLE: singup
 export let singup = async (userData) => {
   try {
     let userAuth = await createUserWithEmailAndPassword(
@@ -26,13 +36,31 @@ export let singup = async (userData) => {
     return err.code;
   }
 };
-export let login = async (email, password) => {
+// HANDLE: login
+export let login = async (adminEmail, adminPassword) => {
   try {
-    let userAuth = await signInWithEmailAndPassword(auth, email, password);
-    if (userAuth) {
-      localStorage.setItem("Ma3akToken", userAuth.user.accessToken);
+    // Check if email is admin or not
+    let q = query(collection(db, "admins"), where("email", "==", adminEmail));
+    let docsRef = await getDocs(q);
+    if (docsRef.docs.length > 0) return "auth/user-not-found";
+    else {
+      let userAuth = await signInWithEmailAndPassword(
+        auth,
+        adminEmail,
+        adminPassword
+      );
+      if (userAuth) {
+        localStorage.setItem("Ma3akToken", userAuth.user.accessToken);
+      }
+      return userAuth.user.uid;
     }
   } catch (err) {
     return err.code;
   }
+};
+
+// HANDLE: Logout
+export let logout = async () => {
+  await signOut(auth);
+  localStorage.removeItem("Ma3akToken");
 };
