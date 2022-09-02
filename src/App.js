@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Nav from "./components/nav/Nav";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Case from "./pages/case/Case";
 import Cases from "./pages/cases/Cases";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
@@ -12,6 +13,7 @@ function App() {
         <Nav />
         <Switch>
           <Route path="/cases" exact component={Cases} />
+          <Route path="/cases/:caseID" exact component={Case} />
           <ProtectedRoute path="/signup" exact component={Signup} />
           <ProtectedRoute path="/login" exact component={Login} />
           <Route path="/" exact component={Home} />

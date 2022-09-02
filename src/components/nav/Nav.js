@@ -84,6 +84,8 @@ export default function Nav() {
               width: "4rem",
               height: "4rem",
               cursor: "pointer",
+              marginRight: "2rem",
+              marginTop: "-.5rem",
             }}
           />
         ) : (
