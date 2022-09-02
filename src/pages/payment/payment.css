@@ -1,0 +1,48 @@
+.payment {
+  padding: 4rem 0;
+}
+.payment h3 {
+  font-size: 2.5rem;
+  color: var(--mainColor);
+  margin-bottom: 2rem;
+}
+.payment__form {
+  margin: 4rem 2rem;
+  color: var(--mainColor);
+}
+.payment__form-box label {
+  display: block;
+  font-size: 1.6rem;
+  margin-bottom: 0.2rem;
+  color: var(--sColor);
+}
+.payment__form-box input {
+  width: 30rem;
+  padding: 0.5rem 2rem;
+  font-size: 1.5rem;
+  color: var(--mainColor);
+  font-weight: 600;
+}
+.payment__form-box input:focus {
+  outline-color: var(--sColor);
+}
+.payment__form-email input {
+  direction: ltr;
+}
+.payment__form-amount input {
+  width: 10rem;
+}
+
+.payment__form button {
+  background-color: var(--mainColor);
+  color: var(--whiteColor);
+  padding: 0.6rem 2rem;
+  font-size: 1.6rem;
+  border: none;
+  border-radius: 0.8rem;
+  transition: all 0.3s ease-in-out;
+}
+.payment__form button:hover {
+  background-color: var(--whiteColor);
+  color: var(--mainColor);
+}

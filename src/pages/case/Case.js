@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { getCaseByID } from "../../firebase/cases";
 import "./case.css";
 export default function Case() {
   let [_case, setCase] = useState({});
   let { caseID } = useParams();
+  let history = useHistory();
   useEffect(() => {
     getCaseByID(caseID).then((data) => {
       console.log(data);
@@ -40,7 +42,11 @@ export default function Case() {
         <div className="case__donate">
           <h3 className="case__donate-title">اتبرع دلوقتي من خلال</h3>
           <div className="case__donate-methods">
-            <div>
+            <div
+              onClick={() => {
+                history.push(`/payment/${caseID}`);
+              }}
+            >
               <img src={require("./../../assest/visa.png")} />
               <p>مُتاح</p>
             </div>

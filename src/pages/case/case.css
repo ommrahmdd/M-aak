@@ -13,12 +13,14 @@
 .case__details-box h5 {
   margin: 0;
   font-size: 1.5rem;
+  font-weight: 400;
 }
 .case__details-box p {
   margin: 0;
   font-size: 2.3rem;
   margin-right: 2rem;
   width: 60rem;
+  font-weight: 600;
 }
 .case__donate-methods {
   padding: 2rem 8rem;
@@ -51,4 +53,5 @@
   margin-top: 1rem;
   font-size: 2.5rem;
   color: var(--mainColor);
+  opacity: 0.5;
 }
