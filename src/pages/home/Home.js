@@ -1,7 +1,40 @@
-import React from "react";
+import React, { useRef } from "react";
+import { useIntersection } from "react-use";
+import gsap, { Power3 } from "gsap";
+import { useHistory } from "react-router-dom";
 import Header from "../../components/header/Header";
 import "./home.css";
+import Gallery from "../../components/gallery/Gallery";
+
 export default function Home() {
+  let history = useHistory();
+  let activiyRef = useRef(null);
+  let intersection = useIntersection(activiyRef, {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.2,
+  });
+  let fadeIn = () => {
+    gsap.to([...activiyRef.current.children], {
+      duration: 0.5,
+      ease: Power3.easeOut,
+      opacity: 1,
+      y: 40,
+      stagger: 0.15,
+    });
+  };
+
+  let fadeOut = (el) => {
+    gsap.to(el, {
+      duration: 1,
+      ease: Power3.easeInOut,
+      opacity: 0,
+      y: -40,
+    });
+  };
+
+  intersection && intersection.intersectionRatio > 0.2 && fadeIn();
+
   return (
     <div className="home" dir="rtl">
       <Header />
@@ -35,7 +68,7 @@ export default function Home() {
         {/* HANDLE: Activities Section */}
         <section className="activity">
           <h4 className="activity__title">أنشطة الجمعية</h4>
-          <div className=" activity__grid ">
+          <div className=" activity__grid" ref={activiyRef}>
             <div className="activity__grid-box">
               <div className=" box__left activiy__box">
                 <img
@@ -92,6 +125,7 @@ export default function Home() {
                 </p>
               </div>
             </div>
+            {/* --------------------------------------- */}
             <div className="activity__grid-box  ">
               <div className=" box__left activiy__box">
                 <img
@@ -110,9 +144,25 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            {/* --------------------------------------- */}
           </div>
         </section>
+        {/* HANDLE: aids */}
+        <section className="aids">
+          <h4 className="aids__title">مستعد للمساعدة؟</h4>
+          <button
+            className="primaryBtn customBtn"
+            onClick={() => {
+              history.push("/cases");
+            }}
+          >
+            تبرع الان
+          </button>
+        </section>
+        {/* HANDLE: gallery */}
+        <div className="d-flex justify-content-center py-4 mt-5">
+          <h4 className="fs-1">صـور</h4>
+        </div>
+        <Gallery />
       </div>
     </div>
   );

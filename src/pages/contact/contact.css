@@ -1,0 +1,25 @@
+.contact {
+  padding: 8rem 0;
+}
+
+.contact__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 4rem;
+}
+.contact__grid-box h5 {
+  font-size: 2.3rem;
+}
+.contact__grid-box p {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 0.2rem;
+  font-size: 1.6rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .contact__grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 1rem;
+  }
+}

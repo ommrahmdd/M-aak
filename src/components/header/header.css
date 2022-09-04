@@ -32,3 +32,12 @@
   margin-top: -2rem;
   /* opacity: 0.8; */
 }
+@media only screen and (max-width: 375px) {
+  .header__txt h2 {
+    font-size: 5rem;
+    margin-bottom: 2rem;
+  }
+  .header__txt h3 {
+    font-size: 2.5rem;
+  }
+}

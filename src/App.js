@@ -9,6 +9,7 @@ import Payment from "./pages/payment/Payment";
 import Signup from "./pages/signup/Signup";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import Contact from "./pages/contact/Contact";
 let stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/payment/:caseID" exact component={Payment} />
             <ProtectedRoute path="/signup" exact component={Signup} />
             <ProtectedRoute path="/login" exact component={Login} />
+            <Route path="/contact" exact component={Contact} />
             <Route path="/" exact component={Home} />
           </Switch>
         </Router>

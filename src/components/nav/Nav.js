@@ -22,6 +22,9 @@ export default function Nav() {
     setMenuStatus(false);
     window.location.reload();
   };
+  let handleCLickMenuItem = () => {
+    setMenuStatus(false);
+  };
   return menuStatus ? (
     <section className="menu d-flex flex-column justify-content-center align-items-center">
       {/* <div className=" d-flex align-items-center customNav__left"> */}
@@ -30,20 +33,20 @@ export default function Nav() {
         onClick={handleCloseMenu}
       ></i>
       <ul>
-        <li>
+        <li onClick={handleCLickMenuItem}>
           <Link to="/" className="menu__link">
             الرئيسية
           </Link>
         </li>
-        <li>
+        <li onClick={handleCLickMenuItem}>
           <Link to="/cases" className="menu__link">
             ساعد
           </Link>
         </li>
-        <li>
+        <li onClick={handleCLickMenuItem}>
           <Link className="menu__link">اعرف اكتر</Link>
         </li>
-        <li>
+        <li onClick={handleCLickMenuItem}>
           <Link className="menu__link">اتواصل معانا</Link>
         </li>
         <li onClick={handleLogout}>تسجيل الخروج</li>
@@ -67,14 +70,16 @@ export default function Nav() {
           </li>
           <li>
             <Link to="/cases" className="customNav__link">
-              ساعد
+              تبرع
             </Link>
           </li>
           <li>
-            <Link className="customNav__link">اعرف اكتر</Link>
+            <Link className="customNav__link">اعرف اكثر</Link>
           </li>
           <li>
-            <Link className="customNav__link">اتواصل معانا</Link>
+            <Link to="/contact" className="customNav__link">
+              تواصل معنا
+            </Link>
           </li>
         </ul>
         {localStorage.getItem("Ma3akToken") ? (

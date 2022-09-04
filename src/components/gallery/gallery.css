@@ -1,0 +1,27 @@
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  grid-gap: 1rem;
+}
+.gallery__box {
+  overflow: hidden;
+  min-height: auto;
+  max-height: 25rem;
+}
+.gallery__box:nth-child(odd) {
+  grid-column: span 2;
+}
+/* .gallery__box:nth-child(even) {
+  grid-row: span 2;
+} */
+.gallery__box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media only screen and (max-width: 425px) {
+  .gallery__box:nth-child(even) {
+    grid-column: span 2;
+  }
+}
