@@ -1,0 +1,34 @@
+.header {
+  overflow: hidden;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+}
+.header__container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-image: linear-gradient(#173753d2, #173753d4),
+    url("./../../assest/header.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.header__txt {
+  position: absolute;
+  top: 35%;
+  right: 20%;
+  color: var(--whiteColor);
+}
+.header__txt h2 {
+  font-size: 10rem;
+  font-weight: 800;
+  margin: 0;
+}
+.header__txt h3 {
+  font-size: 5rem;
+  font-weight: lighter;
+  margin-top: -2rem;
+  /* opacity: 0.8; */
+}

@@ -1,4 +1,10 @@
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "./config";
 let casesRef = collection(db, "cases");
 // HANDLE: get all cases
@@ -18,4 +24,13 @@ export let getCaseByID = async (id) => {
   return {
     ..._case.data(),
   };
+};
+
+export let updateCase = async (id, amount) => {
+  let docRef = doc(db, "cases", id);
+  let _case = await getDoc(docRef);
+  let _caseCollectedAmount = _case.data().collectedDebt;
+  await updateDoc(docRef, {
+    collectedDebt: _caseCollectedAmount + amount,
+  });
 };

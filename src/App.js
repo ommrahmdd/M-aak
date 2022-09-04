@@ -7,21 +7,26 @@ import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Payment from "./pages/payment/Payment";
 import Signup from "./pages/signup/Signup";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+let stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 function App() {
   return (
-    <div className="App">
-      <Router>
-        <Nav />
-        <Switch>
-          <Route path="/cases" exact component={Cases} />
-          <Route path="/cases/:caseID" exact component={Case} />
-          <Route path="/payment/:caseID" exact component={Payment} />
-          <ProtectedRoute path="/signup" exact component={Signup} />
-          <ProtectedRoute path="/login" exact component={Login} />
-          <Route path="/" exact component={Home} />
-        </Switch>
-      </Router>
-    </div>
+    <Elements stripe={stripePromise}>
+      <div className="App">
+        <Router>
+          <Nav />
+          <Switch>
+            <Route path="/cases" exact component={Cases} />
+            <Route path="/cases/:caseID" exact component={Case} />
+            <Route path="/payment/:caseID" exact component={Payment} />
+            <ProtectedRoute path="/signup" exact component={Signup} />
+            <ProtectedRoute path="/login" exact component={Login} />
+            <Route path="/" exact component={Home} />
+          </Switch>
+        </Router>
+      </div>
+    </Elements>
   );
 }
 

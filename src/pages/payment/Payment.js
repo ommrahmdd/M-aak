@@ -1,8 +1,19 @@
 import React from "react";
 import { useFormik } from "formik";
-import { PaymentElement } from "@stripe/react-stripe-js";
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import "./payment.css";
+import { useEffect } from "react";
+import axios from "axios";
+import { useState } from "react";
+import { updateCase } from "../../firebase/cases";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { addNewBill } from "../../firebase/users";
 export default function Payment() {
+  let stripe = useStripe();
+  let elements = useElements();
+  let [processing, setProcessing] = useState("");
+  let [error, setError] = useState("");
+  let { caseID } = useParams();
   // HANDLE: formik
   let validate = (values) => {
     const errors = {};
@@ -26,23 +37,87 @@ export default function Payment() {
     ) {
       errors.email = "البريد الالكتروني غير صحيح";
     }
-    console.log(formik.errors);
     return errors;
   };
   let formik = useFormik({
     initialValues: {
       name: "",
-      amount: 0,
+      amount: 1,
       address: "",
       phone: "",
+      email: "",
     },
     validate,
+    onSubmit: async (values) => {
+      setProcessing("من فضلك انتظر");
+      let cardEl = elements.getElement("card");
+      // Billing info
+      let billing = {
+        name: values.name,
+        phone: values.phone,
+        email: values.email,
+        address: {
+          line1: values.address,
+        },
+      };
+
+      try {
+        //HANDLE:  PAYMENT intend
+        let paymentIntent = await axios.post("http://localhost:5000/payment", {
+          amount: (values.amount / 20) * 100,
+        });
+        console.log("hey");
+        //HANDLE:  PAYMENT method
+        let paymentMethod = await stripe.createPaymentMethod({
+          type: "card",
+          card: cardEl,
+          billing_details: billing,
+        });
+        //HANDLE:  PAYMENT confirm
+        let paymentConfirm = await stripe.confirmCardPayment(
+          paymentIntent.data,
+          {
+            payment_method: paymentMethod.paymentMethod.id,
+          }
+        );
+
+        await updateCase(caseID, values.amount);
+        await addNewBill(localStorage.getItem("Ma3ak_user_id"), {
+          caseID,
+          amount: values.amount,
+          date: new Date().toLocaleString(),
+        });
+        setProcessing("تمت عملية الدفع بنجاح");
+        setTimeout(() => {
+          setProcessing("");
+          cardEl.clear();
+          setError("");
+          formik.resetForm();
+        }, 2000);
+      } catch (err) {
+        console.log(err);
+      }
+    },
   });
+
+  let handleCardChange = (e) => {
+    if (!e.complete) {
+      setError("من فضلك ادخل رقم الكارت بشكل صحيح");
+    } else {
+      setError("");
+    }
+  };
   return (
     <div className="payment" dir="rtl">
       <div className="container">
         <h3>من فضلك قم بإدخال البيانات التالية</h3>
-        <form className="payment__form">
+        <form
+          className="payment__form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            formik.handleSubmit();
+          }}
+        >
           <div className="mb-5 payment__form-box">
             <label>الاســم</label>
             <input
@@ -89,10 +164,36 @@ export default function Payment() {
               min="1"
             />
           </div>
-          <div className="mb-5">{/* <PaymentElement /> */}</div>
-          <button type="submit" disabled={!formik.isValid}>
+          <div className="mb-5 w-50">
+            <CardElement
+              options={{
+                hidePostalCode: true,
+                style: {
+                  base: {
+                    fontSize: "20px",
+                  },
+                },
+              }}
+              onChange={(e) => handleCardChange(e)}
+            />
+          </div>
+          <button type="submit" disabled={!formik.isValid || error}>
             تأكيد العملية
           </button>
+          {processing ? (
+            <small className="d-block fs-4 alert alert-primary w-25 mt-4">
+              {processing}
+            </small>
+          ) : (
+            ""
+          )}
+          {error ? (
+            <small className="d-block fs-4 alert alert-danger w-25 mt-4">
+              {error}
+            </small>
+          ) : (
+            ""
+          )}
           {!formik.isValid ? (
             <small className="d-block fs-4 alert alert-danger w-25 mt-4">
               {formik.errors[Object.keys(formik.errors)[0]]}

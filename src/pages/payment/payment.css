@@ -46,3 +46,9 @@
   background-color: var(--whiteColor);
   color: var(--mainColor);
 }
+
+@media only screen and (max-width: 375px) {
+  html {
+    font-size: 8px;
+  }
+}
