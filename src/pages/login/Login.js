@@ -33,8 +33,8 @@ export default function Login() {
               return "كلمة المرور غير صحيحة";
             else {
               console.log("Logged");
-              // history.push("/");
-              // window.location.reload();
+              history.push("/");
+              window.location.reload();
               return "تم تسجيل الدخول بنجاح";
             }
           },

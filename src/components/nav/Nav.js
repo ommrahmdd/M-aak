@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { createRef } from "react";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { logout } from "../../firebase/users";
@@ -8,6 +10,8 @@ import "./nav.css";
 export default function Nav() {
   let history = useHistory();
   let [menuStatus, setMenuStatus] = useState(false);
+  let [IsActiveProfile, setActiveProfile] = useState(false);
+  let profileRef = useRef();
   let handleToLoginBtn = () => {
     history.push("/login");
   };
@@ -25,9 +29,15 @@ export default function Nav() {
   let handleCLickMenuItem = () => {
     setMenuStatus(false);
   };
+
+  let handleProfileHover = () => {
+    setActiveProfile(!IsActiveProfile);
+  };
+  window.addEventListener("click", (e) => {
+    if (!e.target.classList.contains("profile")) setActiveProfile(false);
+  });
   return menuStatus ? (
     <section className="menu d-flex flex-column justify-content-center align-items-center">
-      {/* <div className=" d-flex align-items-center customNav__left"> */}
       <i
         className="fa-solid fa-xmark menu__close"
         onClick={handleCloseMenu}
@@ -83,16 +93,40 @@ export default function Nav() {
           </li>
         </ul>
         {localStorage.getItem("Ma3akToken") ? (
-          <img
-            src={require("./../../assest/profile-icon.png")}
-            style={{
-              width: "4rem",
-              height: "4rem",
-              cursor: "pointer",
-              marginRight: "2rem",
-              marginTop: "-.5rem",
-            }}
-          />
+          <>
+            <img
+              src={require("./../../assest/profile-icon.png")}
+              style={{
+                width: "2.9rem",
+                height: "2.9rem",
+                cursor: "pointer",
+                marginRight: ".5rem",
+                marginTop: "-1rem",
+              }}
+              className="profile"
+              onClick={() => {
+                handleProfileHover();
+              }}
+            />
+            <div
+              className={`profile__box ${IsActiveProfile ? "active" : ""}`}
+              ref={profileRef}
+              onClick={() => {
+                setActiveProfile(false);
+              }}
+            >
+              <div className="profile__box-item">التبرعات</div>
+              <div className="profile__box-item">الملف الشخصي</div>
+              <div
+                className="profile__box-item"
+                onClick={() => {
+                  handleLogout();
+                }}
+              >
+                تسجيل الخروج
+              </div>
+            </div>
+          </>
         ) : (
           <button
             className="customBtn primaryBtn me-5"

@@ -33,7 +33,7 @@
 .customNav__link {
   text-decoration: none;
   color: var(--mainColor);
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-family: "El Messiri";
   transition: color 0.3s ease;
 }
@@ -98,6 +98,39 @@
 .menu__link:hover {
   border-bottom: 0.1rem solid white;
   color: var(--mainColor-lighter);
+}
+
+/* HANDLE: Profile */
+.profile__box {
+  position: absolute;
+  left: 2%;
+  top: 80%;
+  background-color: var(--mainColor);
+  width: 15rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease-in;
+  opacity: 0;
+}
+.active {
+  opacity: 1;
+}
+.profile__box-item {
+  font-size: 1.5rem;
+  color: var(--whiteColor);
+  padding: 1rem 0;
+  border-bottom: 0.07rem solid rgba(255, 255, 255, 0.825);
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.profile__box-item:hover {
+  opacity: 0.6;
+}
+.profile__box-item:last-child {
+  border: none;
 }
 @keyframes topToDown {
   0% {
