@@ -43,6 +43,14 @@ export default function Cases() {
           </label>
         </div>
         <section className="col-md-8 cases__left">
+          {!localStorage.getItem("Ma3ak_user_id") && (
+            <div className="d-flex justify-content-between align-items-center px-3 py-1">
+              <span className="fs-3 m-0 p-0">*سجل الدخول لتتمكن من التبرع</span>
+              <button className="customBtn primaryBtn my-5">
+                تسجيل الدخول
+              </button>
+            </div>
+          )}
           {cases ? (
             <div className="row gy-5 px-5">
               {cases.map((_case, index) => (
@@ -50,7 +58,8 @@ export default function Cases() {
                   className="col-12 d-flex flex-column align-items-start case__box "
                   key={index}
                   onClick={() => {
-                    history.push(`/cases/${_case.caseID}`);
+                    if (localStorage.getItem("Ma3ak_user_id"))
+                      history.push(`/cases/${_case.caseID}`);
                   }}
                 >
                   <h4>{_case.name}</h4>

@@ -68,6 +68,7 @@ export let login = async (adminEmail, adminPassword) => {
 export let logout = async () => {
   await signOut(auth);
   localStorage.removeItem("Ma3akToken");
+  localStorage.removeItem("Ma3ak_user_id");
 };
 
 // HANDLE: add bill to user

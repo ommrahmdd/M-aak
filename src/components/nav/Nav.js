@@ -68,7 +68,12 @@ export default function Nav() {
       className="d-flex justify-content-between align-items-center customNav"
       dir="rtl"
     >
-      <h2 className="logo">
+      <h2
+        className="logo"
+        onClick={() => {
+          history.push("/");
+        }}
+      >
         <img src={require("./../../assest/navLogo.png")} className=" pt-5" />
       </h2>
       <div className=" align-items-center customNav__left">
@@ -129,7 +134,7 @@ export default function Nav() {
           </>
         ) : (
           <button
-            className="customBtn primaryBtn me-5"
+            className="customBtn primaryBtn me-5 mt-0"
             onClick={handleToLoginBtn}
           >
             تسجيل الدخول
