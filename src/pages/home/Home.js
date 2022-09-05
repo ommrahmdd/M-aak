@@ -24,15 +24,6 @@ export default function Home() {
     });
   };
 
-  let fadeOut = (el) => {
-    gsap.to(el, {
-      duration: 1,
-      ease: Power3.easeInOut,
-      opacity: 0,
-      y: -40,
-    });
-  };
-
   intersection && intersection.intersectionRatio > 0.2 && fadeIn();
 
   return (
@@ -150,7 +141,7 @@ export default function Home() {
         <section className="aids">
           <h4 className="aids__title">مستعد للمساعدة؟</h4>
           <button
-            className="primaryBtn customBtn"
+            className="sBtn customBtn mt-5"
             onClick={() => {
               history.push("/cases");
             }}

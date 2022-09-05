@@ -101,7 +101,7 @@
   background-color: rgb(87, 141, 163);
 }
 
-.customBtn {
+/* .customBtn {
   font-size: 1.9rem;
   padding: 0.5rem 2rem;
   border: none;
@@ -109,11 +109,12 @@
   border-radius: 2rem;
   transition: all 0.3s ease-in-out;
 }
-.primaryBtn {
+*/
+.sBtn {
   color: var(--mainColor);
   background-color: white;
 }
-.primaryBtn:hover {
+.sBtn:hover {
   transform: translateY(-0.5rem);
   box-shadow: 0.1rem 0.8rem 0.5rem rgba(0, 0, 0, 0.401);
 }

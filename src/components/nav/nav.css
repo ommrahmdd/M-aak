@@ -96,7 +96,7 @@
   border-bottom: 0.1rem solid transparent;
 }
 .menu__link:hover {
-  border-bottom: 0.1rem solid white;
+  /* border-bottom: 0.1rem solid white; */
   color: var(--mainColor-lighter);
 }
 

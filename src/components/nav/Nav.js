@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { logout } from "../../firebase/users";
-
+import gsap, { Power0 } from "gsap";
 import "./../utils.css";
 import "./nav.css";
 export default function Nav() {
@@ -12,6 +12,7 @@ export default function Nav() {
   let [menuStatus, setMenuStatus] = useState(false);
   let [IsActiveProfile, setActiveProfile] = useState(false);
   let profileRef = useRef();
+  let menuRef = useRef();
   let handleToLoginBtn = () => {
     history.push("/login");
   };
@@ -19,6 +20,12 @@ export default function Nav() {
     setMenuStatus(true);
   };
   let handleCloseMenu = () => {
+    gsap.to(menuRef.current, {
+      duration: 1,
+      y: "-100%",
+      opacity: 0,
+      ease: Power0.easeInOut,
+    });
     setMenuStatus(false);
   };
   let handleLogout = () => {
@@ -37,29 +44,38 @@ export default function Nav() {
     if (!e.target.classList.contains("profile")) setActiveProfile(false);
   });
   return menuStatus ? (
-    <section className="menu d-flex flex-column justify-content-center align-items-center">
+    <section
+      className="menu d-flex flex-column justify-content-center align-items-center"
+      ref={menuRef}
+    >
       <i
         className="fa-solid fa-xmark menu__close"
         onClick={handleCloseMenu}
       ></i>
-      <ul>
-        <li onClick={handleCLickMenuItem}>
+      <ul onClick={handleCLickMenuItem}>
+        <li>
           <Link to="/" className="menu__link">
             الرئيسية
           </Link>
         </li>
-        <li onClick={handleCLickMenuItem}>
+        <li>
           <Link to="/cases" className="menu__link">
             ساعد
           </Link>
         </li>
-        <li onClick={handleCLickMenuItem}>
-          <Link className="menu__link">اعرف اكتر</Link>
+        <li>
+          <Link className="menu__link" to="/projects">
+            مشاريعنا
+          </Link>
         </li>
-        <li onClick={handleCLickMenuItem}>
-          <Link className="menu__link">اتواصل معانا</Link>
+        <li>
+          <Link className="menu__link" to="/contact">
+            تواصل معنا
+          </Link>
         </li>
-        <li onClick={handleLogout}>تسجيل الخروج</li>
+        {localStorage.getItem("Ma3ak_user_id") && (
+          <li onClick={handleLogout}>تسجيل الخروج</li>
+        )}
       </ul>
       {/* </div> */}
     </section>
@@ -89,7 +105,9 @@ export default function Nav() {
             </Link>
           </li>
           <li>
-            <Link className="customNav__link">اعرف اكثر</Link>
+            <Link to="/projects" className="customNav__link">
+              مشاريعنا
+            </Link>
           </li>
           <li>
             <Link to="/contact" className="customNav__link">
