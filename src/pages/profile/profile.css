@@ -1,0 +1,30 @@
+.userProfile {
+  padding: 5rem 0;
+  min-height: 50vh;
+  height: auto;
+}
+.userProfile__box {
+  width: 90%;
+  margin: 0 auto;
+}
+.userProfile__box-title {
+  font-size: 3rem;
+  color: var(--mainColor);
+}
+.userProfile__box-details {
+  margin-right: 2rem;
+  margin-top: 3rem;
+}
+.userBox {
+  display: flex;
+  align-items: center;
+}
+.userBox label {
+  font-size: 1.4rem;
+  color: var(--sColor);
+}
+.userBox p {
+  margin: 0;
+  font-size: 2.1rem;
+  margin-right: 1rem;
+}

@@ -1,0 +1,25 @@
+.editProfile {
+  min-height: 50vh;
+  height: auto;
+  padding: 8rem 0;
+}
+.editProfile__title {
+  font-size: 2.5rem;
+  color: var(--mainColor);
+  margin-bottom: 3rem;
+}
+.editProfile__form-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.editProfile__form-box label {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+.editProfile__form-box input {
+  padding: 0.5rem 1rem;
+  font-size: 1.3rem;
+  min-width: 12.5rem;
+  width: 25rem;
+}

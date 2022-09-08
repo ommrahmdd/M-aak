@@ -63,9 +63,12 @@ export default function Payment() {
 
       try {
         //HANDLE:  PAYMENT intend
-        let paymentIntent = await axios.post("http://localhost:5000/payment", {
-          amount: (values.amount / 20) * 100,
-        });
+        let paymentIntent = await axios.post(
+          "https://m-aak-server.vercel.app/payment",
+          {
+            amount: (values.amount / 20) * 100,
+          }
+        );
         console.log("hey");
         //HANDLE:  PAYMENT method
         let paymentMethod = await stripe.createPaymentMethod({

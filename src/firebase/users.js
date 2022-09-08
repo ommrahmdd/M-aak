@@ -4,6 +4,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
+  updatePassword,
 } from "firebase/auth";
 import {
   collection,
@@ -16,6 +17,7 @@ import {
   updateDoc,
   arrayUnion,
 } from "firebase/firestore";
+// import firebase from "firebase";
 import { db, auth } from "./config";
 
 let usersRef = collection(db, "users");
@@ -87,5 +89,37 @@ export let getUserByAuthId = async (id) => {
   return {
     ...user.docs[0].data(),
     userID: user.docs[0].id,
+  };
+};
+// HANDLE: get user by id
+export let getUserById = async (id) => {
+  let docRef = doc(db, "users", id);
+  let user = await getDoc(docRef);
+  return {
+    ...user.data(),
+  };
+};
+// HANDLE: update user data
+export let updateUser = async (id, data) => {
+  let docRef = doc(db, "users", id);
+  await updateDoc(docRef, {
+    ...data,
+  });
+};
+// HANDLE: update password only
+export let updateUserPassword = async (id, newPassword) => {
+  let docRef = doc(db, "users", id);
+  const user = auth.currentUser;
+  await updatePassword(user, newPassword);
+  await updateDoc(docRef, {
+    password: newPassword,
+  });
+};
+// HANDLE: get user bills
+export let getUserBills = async (id) => {
+  let docRef = doc(db, "users", id);
+  let userRef = await getDoc(docRef);
+  return {
+    bills: userRef.data().bills,
   };
 };

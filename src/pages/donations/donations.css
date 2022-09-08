@@ -1,0 +1,54 @@
+.donations {
+  padding: 6rem 0;
+  min-height: 50vh;
+  height: auto;
+}
+
+.donations__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+}
+.donations__header-title {
+  font-size: 3rem;
+}
+.donations__header-donations {
+  font-size: 1.9rem;
+}
+.donations__header-donations span {
+  font-size: 2.1rem;
+  font-weight: 900;
+}
+.donations__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(27rem, 1fr));
+  grid-gap: 2rem;
+}
+.donations__grid-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-shadow: 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.385);
+  padding: 2rem;
+  border-radius: 2rem;
+  /* justify-content: space-between; */
+}
+.dGrid__imgBox {
+  width: 20rem;
+  height: 10rem;
+  margin-bottom: 2rem;
+}
+.dGrid__imgBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.dGrid__details div label {
+  font-size: 1.2rem;
+  margin-left: 1rem;
+}
+.dGrid__details div p {
+  font-size: 2rem;
+}

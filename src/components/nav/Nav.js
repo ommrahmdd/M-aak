@@ -13,6 +13,7 @@ export default function Nav() {
   let [IsActiveProfile, setActiveProfile] = useState(false);
   let profileRef = useRef();
   let menuRef = useRef();
+  let userId = localStorage.getItem("Ma3ak_user_id");
   let handleToLoginBtn = () => {
     history.push("/login");
   };
@@ -73,8 +74,10 @@ export default function Nav() {
             تواصل معنا
           </Link>
         </li>
-        {localStorage.getItem("Ma3ak_user_id") && (
+        {userId ? (
           <li onClick={handleLogout}>تسجيل الخروج</li>
+        ) : (
+          <li onClick={() => history.push("/login")}>تسجيل الدخول</li>
         )}
       </ul>
       {/* </div> */}
@@ -120,8 +123,8 @@ export default function Nav() {
             <img
               src={require("./../../assest/profile-icon.png")}
               style={{
-                width: "2.9rem",
-                height: "2.9rem",
+                width: "2.3rem",
+                height: "2.3rem",
                 cursor: "pointer",
                 marginRight: ".5rem",
                 marginTop: "-1rem",
@@ -131,6 +134,7 @@ export default function Nav() {
                 handleProfileHover();
               }}
             />
+            {/* HANDLE: logged user dropdown list */}
             <div
               className={`profile__box ${IsActiveProfile ? "active" : ""}`}
               ref={profileRef}
@@ -138,8 +142,20 @@ export default function Nav() {
                 setActiveProfile(false);
               }}
             >
-              <div className="profile__box-item">التبرعات</div>
-              <div className="profile__box-item">الملف الشخصي</div>
+              <div
+                className="profile__box-item"
+                onClick={() => history.push(`/donations/${userId}`)}
+              >
+                التبرعات
+              </div>
+              <div
+                className="profile__box-item"
+                onClick={() => {
+                  history.push("/profile");
+                }}
+              >
+                الملف الشخصي
+              </div>
               <div
                 className="profile__box-item"
                 onClick={() => {

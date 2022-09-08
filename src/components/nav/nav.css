@@ -110,7 +110,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: all 0.3s ease-in;
+  transition: all 0.2s ease-in;
   opacity: 0;
 }
 .active {
@@ -119,12 +119,12 @@
 .profile__box-item {
   font-size: 1.5rem;
   color: var(--whiteColor);
-  padding: 1rem 0;
+  padding: 1.8rem 0;
   border-bottom: 0.07rem solid rgba(255, 255, 255, 0.825);
   width: 100%;
   text-align: center;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 .profile__box-item:hover {
   opacity: 0.6;
