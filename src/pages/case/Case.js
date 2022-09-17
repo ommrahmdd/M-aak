@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { getCaseByID } from "../../firebase/cases";
+import formatMoney from "./../../components/formatMoney";
 import "./case.css";
 export default function Case() {
   let [_case, setCase] = useState({});
@@ -32,11 +33,13 @@ export default function Case() {
           </div>
           <div className="mb-4 case__details-box">
             <h5>المبلغ المطلوب</h5>
-            <p> {_case.debt} ج.م</p>
+            {_case.debt && <p> {formatMoney(_case.debt)} ج.م</p>}
           </div>
           <div className="mb-4 case__details-box">
             <h5>المبلغ المٌجمع</h5>
-            <p>{_case.collectedDebt}</p>
+            {_case.collectedDebt && (
+              <p>{formatMoney(_case.collectedDebt)} ج.م</p>
+            )}
           </div>
         </div>
         <div className="case__donate">

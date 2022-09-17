@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { getAllCases } from "../../firebase/cases";
+import formatMoney from "../../components/formatMoney";
+import { filterCases, getAllCases } from "../../firebase/cases";
 import "./cases.css";
 export default function Cases() {
   let [cases, setCases] = useState([]);
@@ -13,6 +14,10 @@ export default function Cases() {
   }, []);
   let handleRadio = (e) => {
     console.log(e.target.value);
+
+    filterCases(e.target.value).then((data) => {
+      setCases(data);
+    });
   };
   return (
     <div className="cases" dir="rtl">
@@ -58,7 +63,10 @@ export default function Cases() {
                   className="col-12 d-flex flex-column align-items-start case__box "
                   key={index}
                   onClick={() => {
-                    if (localStorage.getItem("Ma3ak_user_id"))
+                    if (
+                      localStorage.getItem("Ma3ak_user_id") &&
+                      _case.debt != _case.collectedDebt
+                    )
                       history.push(`/cases/${_case.caseID}`);
                   }}
                 >
@@ -67,12 +75,16 @@ export default function Cases() {
                   <p>{_case.description}</p>
                   <div className="case__box-debt w-100 d-flex align-items-center justify-content-between">
                     <p>
-                      المبلغ المطلوب <span>{_case.debt} ج.م</span>
+                      المبلغ المطلوب <span>{formatMoney(_case.debt)} ج.م</span>
                     </p>
-                    <p>
-                      المبلغ المٌجمع حتي الان{" "}
-                      <span>{_case.collectedDebt} ج.م</span>
-                    </p>
+                    {_case.debt == _case.collectedDebt ? (
+                      <p>تم جمع المبلغ</p>
+                    ) : (
+                      <p>
+                        المبلغ المٌجمع حتي الان{" "}
+                        <span>{formatMoney(_case.collectedDebt)} ج.م</span>
+                      </p>
+                    )}
                   </div>
                 </div>
               ))}

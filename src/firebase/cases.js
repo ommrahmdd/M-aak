@@ -3,7 +3,10 @@ import {
   doc,
   getDoc,
   getDocs,
+  orderBy,
+  query,
   updateDoc,
+  where,
 } from "firebase/firestore";
 import { db } from "./config";
 let casesRef = collection(db, "cases");
@@ -25,7 +28,7 @@ export let getCaseByID = async (id) => {
     ..._case.data(),
   };
 };
-
+// HANDLE: Update Case
 export let updateCase = async (id, amount) => {
   let docRef = doc(db, "cases", id);
   let _case = await getDoc(docRef);
@@ -33,4 +36,25 @@ export let updateCase = async (id, amount) => {
   await updateDoc(docRef, {
     collectedDebt: _caseCollectedAmount + amount,
   });
+};
+
+// HANDLE: filter cases
+export let filterCases = async (filtering) => {
+  let q = query(casesRef, orderBy("debt"));
+  let docsRef = await getDocs(q);
+  let cases = docsRef.docs.map((data) => ({
+    ...data.data(),
+    caseID: data.id,
+  }));
+
+  switch (filtering) {
+    case "less":
+      return cases;
+      break;
+    case "most":
+      return cases.reverse();
+      break;
+    default:
+      return cases;
+  }
 };

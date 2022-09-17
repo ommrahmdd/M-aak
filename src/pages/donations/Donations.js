@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getUserBills } from "./../../firebase/users";
 import { getCaseByID } from "./../../firebase/cases";
+import formatMoney from "../../components/formatMoney";
 import "./donations.css";
 let initialState = {};
 let reducer = (state, aciton) => {
@@ -50,8 +51,10 @@ export default function Donations() {
             مجموع التبرعات{" "}
             <span>
               {bills.bills &&
-                bills.bills.reduce((acc, current) => acc + current.amount, 0)}
-              ج
+                formatMoney(
+                  bills.bills.reduce((acc, current) => acc + current.amount, 0)
+                )}
+              <span className="fs-4"> ج.م</span>
             </span>
           </h3>
         </div>
@@ -72,11 +75,17 @@ export default function Donations() {
                   </div>
                   <div className="mb-2 d-flex align-items-center justify-content-around">
                     <label htmlFor="">المبلغ المطلوب</label>
-                    <p className="p-0 m-0">{cases[index]?.debt}</p>
+                    <p className="p-0 m-0">
+                      {cases[index]?.debt && formatMoney(cases[index]?.debt)}{" "}
+                      <span className="fs-4">ج.م</span>
+                    </p>
                   </div>
                   <div className="mb-2 d-flex align-items-center justify-content-around">
                     <label htmlFor="">مبلغ التبرع</label>
-                    <p className="p-0 m-0">{bill.amount}</p>
+                    <p className="p-0 m-0">
+                      {formatMoney(bill.amount)}
+                      <span className="fs-4"> ج.م</span>
+                    </p>
                   </div>
                   <div className="mb-2 d-flex align-items-center justify-content-around">
                     <label htmlFor="">تاريخ التبرع</label>

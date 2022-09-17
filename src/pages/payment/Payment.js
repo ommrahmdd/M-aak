@@ -5,7 +5,7 @@ import "./payment.css";
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
-import { updateCase } from "../../firebase/cases";
+import { getCaseByID, updateCase } from "../../firebase/cases";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { addNewBill } from "../../firebase/users";
 export default function Payment() {
@@ -14,6 +14,14 @@ export default function Payment() {
   let [processing, setProcessing] = useState("");
   let [error, setError] = useState("");
   let { caseID } = useParams();
+  let [_case, setCase] = useState({});
+  // HANDLE: useEffect
+  useEffect(() => {
+    getCaseByID(caseID).then((data) => {
+      setCase(data);
+      console.log(data);
+    });
+  }, []);
   // HANDLE: formik
   let validate = (values) => {
     const errors = {};
@@ -36,6 +44,12 @@ export default function Payment() {
       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
     ) {
       errors.email = "البريد الالكتروني غير صحيح";
+    }
+
+    if (values.amount > _case.debt - _case.collectedDebt) {
+      errors.amount = `اقصي مبلغ يمكن التبرع به هو ${
+        _case.debt - _case.collectedDebt
+      } ج.م`;
     }
     return errors;
   };
@@ -69,7 +83,6 @@ export default function Payment() {
             amount: (values.amount / 20) * 100,
           }
         );
-        console.log("hey");
         //HANDLE:  PAYMENT method
         let paymentMethod = await stripe.createPaymentMethod({
           type: "card",
