@@ -20,7 +20,7 @@ export default function EditProfile() {
         phone: data.phone,
       });
     });
-  }, []);
+  }, [userId]);
   let handleFormChange = (e) => {
     setUser((prevState) => {
       return {

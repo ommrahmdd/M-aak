@@ -1,7 +1,5 @@
-import { async } from "@firebase/util";
 import {
   createUserWithEmailAndPassword,
-  onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
   updatePassword,
@@ -76,7 +74,7 @@ export let logout = async () => {
 // HANDLE: add bill to user
 export let addNewBill = async (userID, bill) => {
   let docRef = doc(db, "users", userID);
-  let updateUser = await updateDoc(docRef, {
+  await updateDoc(docRef, {
     bills: arrayUnion(bill),
   });
 };

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
-import { signup, singup } from "./../../firebase/users";
+import { singup } from "./../../firebase/users";
 import "./../login/login_signup.css";
 export default function Signup() {
   let [error, setError] = useState("");
@@ -11,7 +11,7 @@ export default function Signup() {
     if (!values.phone) errors.phone = "*يجب إدخال رقم الهاتف";
     if (!values.address) errors.address = "*يجب إدخال عنوان المستخدم";
     if (!values.password) errors.password = "*يجب إدخال كلمة المرور";
-    if (values.password != values.confirmPassword)
+    if (values.password !== values.confirmPassword)
       errors.confirmPassword = "*يجب ان تتطابق كلمة المرور";
     if (!values.confirmPassword)
       errors.confirmPassword = "*يجب إدخال تأكيد كلمة المرور";
@@ -30,7 +30,7 @@ export default function Signup() {
     validate,
     onSubmit: (values) => {
       singup(values).then((data) => {
-        if (data == "auth/email-already-in-use")
+        if (data === "auth/email-already-in-use")
           setError("البريد الالكتروني مستخدم بالفعل");
       });
     },
@@ -135,7 +135,11 @@ export default function Signup() {
           </form>
         </div>
         <div className="col-md-6 order-md-1 mb-md-0 mb-5 order-0 login__left d-flex align-items-center">
-          <img src={require("./../../assest/signup.png")} className="w-100" />
+          <img
+            src={require("./../../assest/signup.png")}
+            alt="إنشاء حساب جديد"
+            className="w-100"
+          />
         </div>
       </div>
     </div>

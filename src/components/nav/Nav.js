@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import { createRef } from "react";
-import { useRef } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { logout } from "../../firebase/users";
@@ -93,7 +91,11 @@ export default function Nav() {
           history.push("/");
         }}
       >
-        <img src={require("./../../assest/navLogo.png")} className=" pt-5" />
+        <img
+          src={require("./../../assest/navLogo.png")}
+          alt="معاك"
+          className=" pt-5"
+        />
       </h2>
       <div className=" align-items-center customNav__left">
         <ul>
@@ -122,6 +124,7 @@ export default function Nav() {
           <>
             <img
               src={require("./../../assest/profile-icon.png")}
+              alt="الملف الشخصي"
               style={{
                 width: "2.3rem",
                 height: "2.3rem",

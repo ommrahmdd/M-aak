@@ -21,7 +21,7 @@ export default function Payment() {
       setCase(data);
       console.log(data);
     });
-  }, []);
+  }, [caseID]);
   // HANDLE: formik
   let validate = (values) => {
     const errors = {};
@@ -90,7 +90,7 @@ export default function Payment() {
           billing_details: billing,
         });
         //HANDLE:  PAYMENT confirm
-        let paymentConfirm = await stripe.confirmCardPayment(
+        await stripe.confirmCardPayment(
           paymentIntent.data,
           {
             payment_method: paymentMethod.paymentMethod.id,

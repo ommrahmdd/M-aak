@@ -13,7 +13,7 @@ export default function Case() {
       console.log(data);
       setCase(data);
     });
-  }, []);
+  }, [caseID]);
   return (
     <div className="case" dir="rtl">
       <div className="container">
@@ -50,11 +50,11 @@ export default function Case() {
                 history.push(`/payment/${caseID}`);
               }}
             >
-              <img src={require("./../../assest/visa.png")} />
+              <img src={require("./../../assest/visa.png")} alt="Visa" />
               <p>مُتاح</p>
             </div>
             <div>
-              <img src={require("./../../assest/cash.PNG")} />
+              <img src={require("./../../assest/cash.PNG")} alt="Cash" />
               <p>غير مُتاح</p>
             </div>
           </div>

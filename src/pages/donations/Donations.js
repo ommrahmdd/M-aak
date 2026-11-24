@@ -40,7 +40,7 @@ export default function Donations() {
         });
       });
     });
-  }, []);
+  }, [userId]);
   return (
     <div className="donations">
       <div className="container">
@@ -65,7 +65,7 @@ export default function Donations() {
                 <div className="dGrid__imgBox">
                   <img
                     src={require("./../../assest/visa.png")}
-                    alt="donation image"
+                    alt="Visa"
                   />
                 </div>
                 <div className="dGrid__details d-flex flex-column align-items-start">

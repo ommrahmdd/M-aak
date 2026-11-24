@@ -27,7 +27,7 @@ export default function Profile() {
         payload: data,
       });
     });
-  }, []);
+  }, [userID]);
   return (
     <div className="userProfile" dir="rtl">
       <div className="userProfile__box">

@@ -65,7 +65,7 @@ export default function Cases() {
                   onClick={() => {
                     if (
                       localStorage.getItem("Ma3ak_user_id") &&
-                      _case.debt != _case.collectedDebt
+                      _case.debt !== _case.collectedDebt
                     )
                       history.push(`/cases/${_case.caseID}`);
                   }}
@@ -77,7 +77,7 @@ export default function Cases() {
                     <p>
                       المبلغ المطلوب <span>{formatMoney(_case.debt)} ج.م</span>
                     </p>
-                    {_case.debt == _case.collectedDebt ? (
+                    {_case.debt === _case.collectedDebt ? (
                       <p>تم جمع المبلغ</p>
                     ) : (
                       <p>

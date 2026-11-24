@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./header.css";
 import gsap, { Power2 } from "gsap";
-import { createRef } from "react";
-import { useEffect } from "react";
 export default function Header() {
-  let imgRef = createRef(null);
-  let txtRef = createRef(null);
+  let imgRef = useRef(null);
+  let txtRef = useRef(null);
   useEffect(() => {
     gsap.to(imgRef.current, {
       duration: 6,

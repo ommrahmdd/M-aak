@@ -64,7 +64,7 @@ export default function Home() {
               <div className=" box__left activiy__box">
                 <img
                   src={require("./../../assest/activity_1.jpg")}
-                  alt="activity image"
+                  alt="المجال الإجتماعى"
                 />
               </div>
               <div className=" box__right activiy__box activiy__box-1">
@@ -83,7 +83,7 @@ export default function Home() {
               <div className=" box__left activiy__box">
                 <img
                   src={require("./../../assest/activity_2.jpg")}
-                  alt="activity image"
+                  alt="المجال التعليمي"
                 />
               </div>
               <div className=" box__right activiy__box activiy__box-2">
@@ -102,7 +102,7 @@ export default function Home() {
               <div className=" box__left activiy__box">
                 <img
                   src={require("./../../assest/activity_4.jpg")}
-                  alt="activity image"
+                  alt="المجال الديني"
                 />
               </div>
               <div className=" box__right activiy__box activiy__box-4">
@@ -121,7 +121,7 @@ export default function Home() {
               <div className=" box__left activiy__box">
                 <img
                   src={require("./../../assest/activity_3.jpg")}
-                  alt="activity image"
+                  alt="المجال الصحي"
                 />
               </div>
               <div className=" box__right activiy__box activiy__box-3">

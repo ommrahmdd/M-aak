@@ -3,10 +3,10 @@ import "./projects.css";
 import gsap, { Power3 } from "gsap";
 import CSSRulePlugin from "gsap/CSSRulePlugin";
 export default function Projects() {
-  let imgAfter = CSSRulePlugin.getRule(".project__imgBox::after");
   let projectsGridRef = useRef();
 
   useEffect(() => {
+    let imgAfter = CSSRulePlugin.getRule(".project__imgBox::after");
     gsap.to([...projectsGridRef.current.children], {
       opacity: 1,
       duration: 0.6,
@@ -29,7 +29,7 @@ export default function Projects() {
             <div className="project__imgBox">
               <img
                 src={require("./../../assest/activity_3.jpg")}
-                alt="project image"
+                alt="مشروع التعاونية"
               />
             </div>
             <div>
@@ -48,7 +48,7 @@ export default function Projects() {
             <div className="project__imgBox">
               <img
                 src={require("./../../assest/g-1.jpg")}
-                alt="project image"
+                alt="مشروع حفر الآبار"
               />
             </div>
             <div>
@@ -70,7 +70,7 @@ export default function Projects() {
             <div className="project__imgBox">
               <img
                 src={require("./../../assest/g-3.jpg")}
-                alt="project image"
+                alt="مشروع بناء المكتبات"
               />
             </div>
             <div>
@@ -89,7 +89,7 @@ export default function Projects() {
             <div className="project__imgBox">
               <img
                 src={require("./../../assest/g-2.jpg")}
-                alt="project image"
+                alt="مشروع كسوة الأطفال"
               />
             </div>
             <div>

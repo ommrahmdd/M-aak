@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useFormik } from "formik";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { login } from "../../firebase/users";
 import toast, { Toaster } from "react-hot-toast";
 import "./login_signup.css";
@@ -27,9 +27,9 @@ export default function Login() {
         {
           loading: "من فضلك انتظر ",
           success: (data) => {
-            if (data == "auth/user-not-found")
+            if (data === "auth/user-not-found")
               return "عفوا البريد الالكتروني غير صحيح";
-            else if (data == "auth/wrong-password")
+            else if (data === "auth/wrong-password")
               return "كلمة المرور غير صحيحة";
             else {
               console.log("Logged");
@@ -53,10 +53,6 @@ export default function Login() {
     },
   });
   let history = useHistory();
-  let [error, setError] = useState("");
-  let handleGoToSignup = () => {
-    history.push("/signup");
-  };
   return (
     <div className="login" dir="rtl">
       <div className="row ">
@@ -101,21 +97,16 @@ export default function Login() {
               تسجيل الدخول
             </button>
             <Toaster />
-            <small className="d-block mt-2 fs-5 text-danger">
-              {error && error}
-            </small>
           </form>
           <p className="login__createAcc">
-            ليس لديك حساب ؟{" "}
-            <a href="" onClick={handleGoToSignup}>
-              قم بعمل حساب
-            </a>
+            ليس لديك حساب ؟ <Link to="/signup">قم بعمل حساب</Link>
           </p>
         </div>
 
         <div className="col-md-6 order-md-1 order-0  login__left">
           <img
             src={require("./../../assest/login.png")}
+            alt="تسجيل الدخول"
             className="w-100 mb-md-0 mb-5"
           />
         </div>

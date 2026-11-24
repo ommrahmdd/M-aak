@@ -6,7 +6,6 @@ import {
   orderBy,
   query,
   updateDoc,
-  where,
 } from "firebase/firestore";
 import { db } from "./config";
 let casesRef = collection(db, "cases");
@@ -50,10 +49,8 @@ export let filterCases = async (filtering) => {
   switch (filtering) {
     case "less":
       return cases;
-      break;
     case "most":
       return cases.reverse();
-      break;
     default:
       return cases;
   }
